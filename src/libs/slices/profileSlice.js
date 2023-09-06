@@ -30,10 +30,18 @@ export const respondEvent = createAsyncThunk(getPrefix(name, 'createEvent'), asy
   return response.data
 })
 
+// https://single.uz/api/lesson-duration-week
+
 export const profileSlice = createSlice({
   name,
   initialState,
-  reducers: {},
+  reducers: {
+    setErrorMessage(state, action) {
+      console.log(2222)
+
+      state.responseMessage = {}
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchUser.fulfilled, (state, action) => {
@@ -67,5 +75,7 @@ export const profileSlice = createSlice({
 })
 
 const getUserId = (state) => state.profile.user.id
+
+export const { setErrorMessage } = profileSlice.actions
 
 export default profileSlice.reducer

@@ -31,4 +31,7 @@ export const API = {
   EVENT: '/api/event/respond',
   TEACHER_LIST: '/api/user/success/tutor?page=1&limit=10',
   SLOTS_LIST: `/api/event/tutor`,
+  LESSON_DURATION_WEEK: `/api/lesson-duration-week`,
+  SUBSCRIPTION_PLAN: `/api/subscription-plan`,
+  USER_ME: `/api/user/me`,
 }
