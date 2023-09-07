@@ -9,9 +9,10 @@ const initialState = {
   lessonDurationWeek: [],
   subscriptionPlan: [],
   userMe: {},
+  userPlan: {},
 }
 
-// https://single.uz/api/user/me
+// 
 
 export const getLessonDurationWeek = createAsyncThunk(
   getPrefix('plan', 'getLessonDurationWeek'),
@@ -34,6 +35,13 @@ export const getUserMe = createAsyncThunk(getPrefix('user', 'getUserMe'), async 
   return response?.data?.data
 })
 
+export const buyUserPlan = createAsyncThunk(getPrefix('plan', 'buyUserPlan'), async (data) => {
+  const response = await rest.post(API.USER_PLAN, data)
+  const resData = await response.json()
+  console.log('response', response)
+  return resData
+})
+
 const paymentSlice = createSlice({
   name,
   initialState,
@@ -51,8 +59,11 @@ const paymentSlice = createSlice({
         state.subscriptionPlan = action.payload
       })
       .addCase(getUserMe.fulfilled, (state, action) => {
-        // console.log(action.payload)
         state.userMe = action.payload
+      })
+      .addCase(buyUserPlan.fulfilled, (state, action) => {
+        console.log(action.payload)
+        state.userPlan = action.payload
       })
   },
 })

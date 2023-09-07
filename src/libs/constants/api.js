@@ -34,4 +34,5 @@ export const API = {
   LESSON_DURATION_WEEK: `/api/lesson-duration-week`,
   SUBSCRIPTION_PLAN: `/api/subscription-plan`,
   USER_ME: `/api/user/me`,
+  USER_PLAN: `/api/user-plan`,
 }
