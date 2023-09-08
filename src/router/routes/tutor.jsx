@@ -12,6 +12,7 @@ import {
   TutorPriority,
   TutorUnassigned,
   TutorUpcoming,
+  TutorReservation,
 } from '@/router/lazy'
 
 export const tutorRoutes = (isAuth) => [
@@ -40,8 +41,8 @@ export const tutorRoutes = (isAuth) => [
         element: <TutorPriority />,
       },
       {
-        path: ROUTES.priority,
-        element: <TutorPriority />,
+        path: ROUTES.reservation,
+        element: <TutorReservation />,
       },
       {
         path: ROUTES.tutorId,

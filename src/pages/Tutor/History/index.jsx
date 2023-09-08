@@ -1,17 +1,17 @@
-import { Wrapper } from "@/UI";
-import { useState } from "react";
-import { Files } from "@/components";
-import { Form, Input } from "antd";
-import { star, searchGray } from "@/assets";
+import { Wrapper } from '@/UI'
+import { useState } from 'react'
+import { Files } from '@/components'
+import { Form, Input } from 'antd'
+import { star, searchGray } from '@/assets'
 
 const History = () => {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('')
   return (
     <>
       <Wrapper className="flex-between py-7">
         <ul className="history-statistics">
           <li>
-            <h4 >$140.45</h4>
+            <h4>$140.45</h4>
             <p>current balance</p>
           </li>
           <li>
@@ -22,19 +22,19 @@ const History = () => {
             <p>total chats</p>
           </li>
           <li>
-            <h4 >45</h4>
+            <h4>45</h4>
             <p>current balance</p>
           </li>
           <li>
-            <h4 >45</h4>
+            <h4>45</h4>
             <p>total chats</p>
           </li>
           <li>
-            <h4 >140</h4>
+            <h4>140</h4>
             <p>current balance</p>
           </li>
           <li>
-            <h4 >$140.45</h4>
+            <h4>$140.45</h4>
             <p>total chats</p>
           </li>
         </ul>
@@ -53,9 +53,7 @@ const History = () => {
                 />
 
                 <Input
-                  onChange={({ target: { value } }) =>
-                    setValue(value.toLowerCase())
-                  }
+                  onChange={({ target: { value } }) => setValue(value.toLowerCase())}
                   placeholder="Search file"
                   className="h-full w-[540px] border-gray placeholder:text-lg pl-16"
                 />
@@ -63,10 +61,10 @@ const History = () => {
             </Form.Item>
           </Form>
         </div>
-        <Files file={""} type="history" />
+        <Files file={''} type="history" />
       </Wrapper>
     </>
-  );
-};
+  )
+}
 
-export default History;
+export default History

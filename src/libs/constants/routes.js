@@ -28,6 +28,7 @@ export const ROUTES = {
   live: 'live',
   schedule: 'schedule',
   completed: 'completed',
+  calendar: 'calendar',
   tutorId: 'tutorInfo/:id',
 
   // TUTOR
@@ -37,4 +38,5 @@ export const ROUTES = {
   incoming: 'incoming',
   unassigned: 'unassigned',
   upcoming: 'upcoming',
+  reservation: 'reservations',
 }

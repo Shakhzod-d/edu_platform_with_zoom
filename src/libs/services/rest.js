@@ -45,5 +45,4 @@ rest.interceptors.request.use(requestMapper)
  * Apply response interceptors
  */
 rest.interceptors.response.use(responseMapper, errorHandler)
-
 export default rest

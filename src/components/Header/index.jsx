@@ -9,14 +9,17 @@ import { ROUTES } from '@/libs/constants/routes'
 import { userLinks, studentLinks, tutorLinks } from 'src/libs/constants'
 import { HeaderLinks } from './Links'
 import { getPathName, items } from './constants'
+import { useDispatch, useSelector } from 'react-redux'
+import { getMe, getMeUser } from '@/libs/slices/profileSlice'
 
 export default function Header() {
   const { barShow, barClose } = useContext(ModalContext)
-  const [open, setOpen] = useState(false)
+  const [account, setAccount] = useState({})
   const [links, setLinks] = useState([])
   const [status, setStatus] = useState('')
   const { pathname } = useLocation()
   const pathnameKey = getPathName(pathname)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     if (pathnameKey === ROUTES.tutor) {
@@ -29,7 +32,10 @@ export default function Header() {
       setLinks(userLinks)
       setStatus('user')
     }
-  }, [pathnameKey, ROUTES])
+    dispatch(getMe())
+  }, [pathnameKey, ROUTES, dispatch])
+
+  const { user } = useSelector(getMeUser)
 
   return (
     <header className="flex-center">
@@ -87,7 +93,7 @@ export default function Header() {
                 alt="Person"
               />
 
-              <h3>Tutor Alex</h3>
+              <h3>{`${user?.firstname} ${user?.lastname}`}</h3>
 
               <DownOutlined />
             </div>

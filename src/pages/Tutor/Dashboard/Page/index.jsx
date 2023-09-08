@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { Wrapper } from "@/UI";
-import { NavLink, Outlet } from "react-router-dom";
-import { tutorDashLinks } from "src/libs/constants";
-import { Switch } from "antd";
+import React, { useState } from 'react'
+import { Wrapper } from '@/UI'
+import { NavLink, Outlet } from 'react-router-dom'
+import { tutorDashLinks } from 'src/libs/constants'
+import { Switch } from 'antd'
 
 export default function TutorDashboard() {
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(true)
 
   return (
     <div className="flex-column items-center">
@@ -33,12 +33,8 @@ export default function TutorDashboard() {
       </Wrapper>
 
       <div className="w-3/4 mt-5">
-        {visible ? (
-          <Outlet />
-        ) : (
-          <p className="text-center">You are offline</p>
-        )}
+        {visible ? <Outlet /> : <p className="text-center">You are offline</p>}
       </div>
     </div>
-  );
+  )
 }

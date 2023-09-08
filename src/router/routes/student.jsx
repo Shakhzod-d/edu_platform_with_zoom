@@ -18,6 +18,7 @@ import {
   StudentSubscriptions,
   TutorDetails,
 } from '@/router/lazy'
+import { StudentCalendar } from '@/pages/Student/Calendar'
 import { CreateRoom } from '@/pages/Tutor/CreateRoom'
 import { Room } from '@/pages/Tutor/CreateRoom/Room'
 
@@ -61,6 +62,10 @@ export const studentRoutes = (isAuth) => [
       {
         path: ROUTES.chat,
         element: <Chat />,
+      },
+      {
+        path: ROUTES.calendar,
+        element: <StudentCalendar />,
       },
       {
         path: ROUTES.createRoom,

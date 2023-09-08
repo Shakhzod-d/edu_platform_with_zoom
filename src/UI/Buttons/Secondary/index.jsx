@@ -10,7 +10,13 @@ export default function Secondary({ className, submit, icon, children, type, w, 
       {...props}
     >
       <div className={`w-full flex-between ${type === 'gray' && 'flex-row-reverse'} `}>
-        <span className={`font-medium text-base leading-6 ${type === 'gray' ? 'text-gray-CCC' : 'text-white'} `}>{children}</span>
+        <span
+          className={`font-medium text-base leading-6 ${
+            type === 'gray' ? 'text-gray-CCC' : 'text-white'
+          } `}
+        >
+          {children}
+        </span>
         <img className={`${type === 'gray' && 'mb-1'}`} src={icon} alt="Icon" />
       </div>
     </Button>

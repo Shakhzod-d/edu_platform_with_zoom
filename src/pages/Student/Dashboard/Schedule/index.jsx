@@ -1,5 +1,6 @@
-import React, { Fragment, useEffect } from 'react'
+
 import { ScheduleLesson } from '@/UI'
+import React, { Fragment, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCurrentWeek } from '../helper'
 import { getWeeklyClass } from '@/libs/slices/eventSlice'

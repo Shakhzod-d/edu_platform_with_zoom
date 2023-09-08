@@ -52,9 +52,14 @@ export const login = createAsyncThunk(getPrefix(name, 'login'), async () => {})
 export const userLogin = createAsyncThunk(getPrefix(name, 'userLogin'), async (option) => {
   try {
     const { data } = await rest.post(API.CLIENT_LOGIN, option)
+
     if (data?.data?.token) {
       setLocalStorage('access-token', data?.data?.token)
-      history.push('/student')
+      if (data.data.role === 'tutor') {
+        history.push('/tutor/dashboard/incoming')
+      } else {
+        history.push('/student')
+      }
     }
   } catch (error) {
     addNotification(error)
@@ -159,19 +164,11 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(signup.fulfilled, (state, action) => {
-        state.user = action.payload
-        state.loading = false
-      })
       .addCase(signup.pending, (state) => {
         state.loading = true
       })
       .addCase(signup.fulfilled, (state, action) => {
         state.errorMessage = action.payload.errorMessage
-        state.loading = false
-      })
-      .addCase(login.fulfilled, (state, action) => {
-        state.user = action.payload
         state.loading = false
       })
       .addCase(login.pending, (state) => {
@@ -186,6 +183,10 @@ const authSlice = createSlice({
       })
       .addCase(userResgister.fulfilled, (state) => {
         state.isLoading = false
+      })
+      .addCase(userLogin.fulfilled, async (state, { payload }) => {
+        console.log(payload)
+        state.user = payload
       })
   },
 })

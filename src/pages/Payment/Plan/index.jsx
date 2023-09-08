@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Wrapper, Primary } from '@/UI'
 import { history } from 'src/libs/utils'
 import { Select, Form } from 'antd'

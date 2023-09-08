@@ -5,4 +5,6 @@ import CustomSelect from './Select'
 import ScheduleLesson from './ScheduleLesson'
 
 export * from './Buttons'
+export * from './PriortyHours'
+
 export { Modal, Loader, Wrapper, CustomSelect, ScheduleLesson }

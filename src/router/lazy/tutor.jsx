@@ -58,3 +58,9 @@ export const TutorPriority = lazy(() =>
     .then(({ TutorPriority }) => ({ default: TutorPriority }))
     .catch(handleCatchChunkError)
 )
+
+export const TutorReservation = lazy(() =>
+  import('@/pages')
+    .then(({ TutorReservation }) => ({ default: TutorReservation }))
+    .catch(handleCatchChunkError)
+)
