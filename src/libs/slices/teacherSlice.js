@@ -47,6 +47,16 @@ export const eventCancel = createAsyncThunk(getPrefix('event', 'eventCancel'), a
   return response.data
 })
 
+export const bookedCancel = createAsyncThunk(getPrefix('event', 'bookedCancel'), async (data) => {
+  const response = await rest.post(API.EVENT_BOOKED_CANCEL, data)
+  return response.data
+})
+
+export const eventStart = createAsyncThunk(getPrefix('event', 'eventStart'), async (data) => {
+  const response = await rest.post(API.EVENT_START, data)
+  return response.data
+})
+
 const teacherSlice = createSlice({
   name,
   initialState,

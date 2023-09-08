@@ -1,3 +1,5 @@
+// import { getHours } from "date-fns"
+
 export const format = (option, dateString) => {
   const options =
     option === 'year'
@@ -20,13 +22,6 @@ export const eventFormatLocalTime = (date) => {
 export const eventTimeCalendarFormat = (date) => {
   const utcDate = new Date(date)
   const localDate = new Date(utcDate.getTime() + utcDate.getTimezoneOffset())
-  // return new Date(
-  //   localDate.getFullYear(),
-  //   localDate.getMonth()+1,
-  //   localDate.getDay(),
-  //   localDate.getHours(),
-  //   localDate.getMinutes(),
-  //   localDate.getSeconds() + 1
-  // )
+  localDate.setHours(localDate.getHours() + 5)
   return localDate
 }

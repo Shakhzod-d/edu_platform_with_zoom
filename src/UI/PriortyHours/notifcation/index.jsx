@@ -14,6 +14,7 @@ export default function TutorNotification({ data, open }) {
     hour12: true,
   }
   const localTime = time.toLocaleString('en-US', options)
+  
   const openModal = () => {
     open(2)
   }

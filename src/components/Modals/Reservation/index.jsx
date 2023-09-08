@@ -1,11 +1,14 @@
 import { Modal } from '@/UI'
 import { Avatar, List, Button } from 'antd'
 import { useDispatch } from 'react-redux'
-import { setBocked } from '@/libs/slices/teacherSlice'
+import { bookedCancel, setBocked } from '@/libs/slices/teacherSlice'
+import { Input, Form } from 'antd'
 import { clock, light, schedule } from '@/assets'
+import { useState } from 'react'
 
 export default function ReservationModal({ close, id }) {
   const dispatch = useDispatch()
+  const [bocked, setBooked] = useState(false)
 
   const henlerClose = () => {
     const option = {
@@ -15,13 +18,20 @@ export default function ReservationModal({ close, id }) {
     close()
   }
 
-  const hendlerCancelRespond = () => {
+  const handlerOpen = () => {
+    setBooked(true)
+  }
+
+  const hendlerCancelBocked = (values) => {
     const opt = {
       event: {
         id: id,
       },
+      report: {
+        descr: values.descr,
+      },
     }
-    dispatch()
+    dispatch(bookedCancel(opt))
   }
 
   const data = [
@@ -67,10 +77,39 @@ export default function ReservationModal({ close, id }) {
         <Button onClick={henlerClose} className="bg-[#39B980] text-white">
           I’ll be there
         </Button>
-        <Button onClick={henlerClose} className="bg-[#666666] text-white">
+        <Button onClick={handlerOpen} className="bg-[#666666] text-white">
           I can’t make it
         </Button>
       </div>
+      {bocked ? (
+        <div className="w-full flex flex-col items-center py-3">
+          <div className="w-full rounded-lg p-1 bg-[#E8C66F4D] text-[#826E06]">
+            Students are often disappointed with cancellations, and an apologetic message can go a
+            tong way!
+          </div>
+          <Form onFinish={hendlerCancelBocked} className="text-center">
+            <Form.Item
+              name="descr"
+              className="w-full"
+              rules={[
+                {
+                  required: true,
+                },
+              ]}
+            >
+              <Input.TextArea
+                placeholder="Cancellation reason..."
+                className="w-full mt-1"
+                cols={40}
+                rows={3}
+              />
+            </Form.Item>
+            <Button htmlType="submit" className="bg-[#EA4646] text-white">
+              Cancel reservation
+            </Button>
+          </Form>
+        </div>
+      ) : null}
     </Modal>
   )
 }
