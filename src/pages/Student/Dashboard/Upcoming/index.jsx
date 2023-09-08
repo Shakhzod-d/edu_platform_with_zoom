@@ -1,11 +1,23 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import { LessonCard } from '@/components'
 import { ScheduleLesson } from '@/UI'
 import { Divider } from 'antd'
+import { useDispatch, useSelector } from 'react-redux'
+import { getWeeklyClass } from '@/libs/slices/eventSlice'
+import { getCurrentWeek } from '../helper'
 
 export default function Upcoming() {
+  const { events } = useSelector((state) => state.event) // events = Upcoming
+  const dispatch = useDispatch()
   const course = true
   const lesson_today = false
+
+  // console.log(events)
+
+  useEffect(() => {
+    dispatch(getWeeklyClass(getCurrentWeek('bocked')))
+  }, [])
+
   return (
     <Fragment>
       {course ? (
@@ -13,8 +25,8 @@ export default function Upcoming() {
           <Divider>Today's lessons</Divider>
           {lesson_today ? (
             <>
-              {[1, 2].map((id) => (
-                <LessonCard key={id} />
+              {events?.map((item, idx) => (
+                <LessonCard key={idx} />
               ))}
             </>
           ) : (

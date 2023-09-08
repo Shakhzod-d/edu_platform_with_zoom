@@ -1,5 +1,16 @@
-import React, { useState } from 'react'
-import { Tooltip, Badge, Avatar, Divider, Calendar, Pagination, Button, Row, Popover } from 'antd'
+import React, { useEffect, useState } from 'react'
+import {
+  Tooltip,
+  Badge,
+  Avatar,
+  Divider,
+  Calendar,
+  Pagination,
+  Button,
+  Row,
+  Popover,
+  message,
+} from 'antd'
 import { BsShare, BsHeart, star, verified, arrowLeft, verticalDots } from '@/assets'
 import { Primary, Wrapper } from '@/UI'
 import { useMedia } from '../../../libs/hooks'
@@ -8,7 +19,7 @@ import ModalToBookHours from './ModalToBookHours/ModalToBookHours'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getSlotList } from '@/libs/slices/teacherSlice'
-import { respondEvent } from '@/libs/slices/profileSlice'
+import { respondEvent, setErrorMessage } from '@/libs/slices/profileSlice'
 
 const onPanelChange = (value, mode) => {
   console.log(value.format('YYYY-MM-DD'), mode, value)
@@ -16,12 +27,12 @@ const onPanelChange = (value, mode) => {
 
 export default function Details() {
   const { slots } = useSelector((state) => state.teacher)
-  const { responseMessage } = useSelector((state) => state.profile)
+  const { errorMessage, responseMessage } = useSelector((state) => state.profile)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [today, setToday] = useState('')
   const { id } = useParams()
   const dispatch = useDispatch()
-  // console.log(slots)
+  // console.log(state)
   // window.scrollTo(0, 0)
 
   const openModal = () => {
@@ -94,13 +105,21 @@ export default function Details() {
 
   const addZero = (number) => (number < 10 ? `0${number}` : number)
 
-  console.log(responseMessage)
+  useEffect(() => {
+    if (!!responseMessage?.message) {
+      const timeoutId = setTimeout(() => {
+        dispatch(setErrorMessage())
+      }, 4000)
+
+      return () => clearTimeout(timeoutId)
+    }
+  }, [!!responseMessage?.message])
 
   return (
     <>
       <ModalToBookHours isOpen={isModalOpen} onClose={closeModal}>
         <h2 className="text-lg font-semibold">Free slots {(' ', !!today && today)}</h2>
-        {!!responseMessage && <h3 style={{ color: 'red' }}>{responseMessage?.message}</h3>}
+        {!!responseMessage?.message && <h3 style={{ color: 'red' }}>{responseMessage?.message}</h3>}
 
         {slots.length > 0 ? (
           slots?.map((item, idx) => {

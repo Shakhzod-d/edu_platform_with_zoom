@@ -5,6 +5,7 @@ import appReducer from '../slices/appSlice.js'
 import profileReducer from '../slices/profileSlice.js'
 import eventReducer from '../slices/eventSlice.js'
 import teacherSlice from '../slices/teacherSlice.js'
+import paymentSlice from '../slices/paymentSlice.js'
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     profile: profileReducer,
     event: eventReducer,
     teacher: teacherSlice,
+    payment: paymentSlice,
   },
   devTools: true,
   middleware: (getDefaultMiddleware) =>

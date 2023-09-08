@@ -16,7 +16,6 @@ export const API = {
   SUCCESS_TUTOR: '/api/user/success/tutor',
   DASHBOARD: '/api/user/dashboard',
   TUTOR_ID: '/api/user/tutor/:tutorId',
-  USER_PLAN: '/api/user-plan',
   SUBSCRIPTION: '/api/subscription-plan',
   REPORT: '/api/report',
   REPORT_ID: '/api/report/:id',
@@ -37,4 +36,8 @@ export const API = {
   SLOTS_LIST: `/api/event/tutor`,
   EVENT_BOOKED_CANCEL: '/api/event/bocked-cancel',
   EVENT_START: 'api/event/start',
+  LESSON_DURATION_WEEK: `/api/lesson-duration-week`,
+  SUBSCRIPTION_PLAN: `/api/subscription-plan`,
+  USER_ME: `/api/user/me`,
+  USER_PLAN: `/api/user-plan`,
 }
