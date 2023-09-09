@@ -10,7 +10,7 @@ export default function Purchase() {
   const [paymentId, setPaymentId] = useState(0)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  const [totalPrice, setTotalPrice] = useState(Number(localStorage.getItem('paymentPrice')))
+  const [totalPrice, setTotalPrice] = useState(Number(localStorage.getItem('totalPrice')))
   const [currentPlan, setCurrentPlan] = useState(JSON.parse(localStorage.getItem('currentPlan')))
   const [currentPrice, setCurrentPrice] = useState(
     totalPrice - (currentPlan?.discountPercent * totalPrice) / 100
@@ -31,6 +31,13 @@ export default function Purchase() {
     localStorage.setItem('payment_method', payments[paymentId].title)
     openModal()
   }
+
+  useEffect(() => {
+    localStorage.setItem(
+      'paymentPrice',
+      totalPrice - (currentPlan?.discountPercent * totalPrice) / 100
+    )
+  }, [])
 
   return (
     <div className="grid xl:grid-cols-2 grid-cols-1 gap-5">

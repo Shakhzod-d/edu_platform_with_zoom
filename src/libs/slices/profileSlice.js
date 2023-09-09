@@ -27,6 +27,8 @@ export const updateUser = createAsyncThunk(getPrefix(name, 'updateUser'), async 
 
 export const respondEvent = createAsyncThunk(getPrefix(name, 'createEvent'), async (data) => {
   const response = await rest.post(`/api/event/respond`, data.body)
+
+  console.log('response', response.status)
   return response.data
 })
 
@@ -41,8 +43,6 @@ export const profileSlice = createSlice({
   initialState,
   reducers: {
     setErrorMessage(state, action) {
-      console.log(2222)
-
       state.responseMessage = {}
     },
   },

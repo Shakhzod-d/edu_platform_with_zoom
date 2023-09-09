@@ -49,7 +49,7 @@ export default function PaymentForm() {
       },
     }
 
-    const url = 'https://single.uz/api/payment'
+    const url = 'http://single.uz/api/payment'
 
     try {
       const response = await axios.post(url, data, config)

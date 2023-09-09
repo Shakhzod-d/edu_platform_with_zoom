@@ -16,10 +16,12 @@ import { Primary, Wrapper } from '@/UI'
 import { useMedia } from '../../../libs/hooks'
 import { TutorMobile } from './Mobile'
 import ModalToBookHours from './ModalToBookHours/ModalToBookHours'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getSlotList } from '@/libs/slices/teacherSlice'
 import { respondEvent, setErrorMessage } from '@/libs/slices/profileSlice'
+import { unwrapResult } from '@reduxjs/toolkit'
+import { history } from '@/libs/utils'
 
 const onPanelChange = (value, mode) => {
   console.log(value.format('YYYY-MM-DD'), mode, value)
@@ -32,8 +34,10 @@ export default function Details() {
   const [today, setToday] = useState('')
   const { id } = useParams()
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   // console.log(state)
   // window.scrollTo(0, 0)
+  // /student/tutors
 
   const openModal = () => {
     setIsModalOpen(true)
@@ -97,11 +101,24 @@ export default function Details() {
     }
 
     dispatch(respondEvent(eventObj))
+      .then(unwrapResult)
+      .then((originalPromiseResult) => {
+        console.log('response', originalPromiseResult)
+        // shu qism da success message quyish lozim
+        alert('Succesfully responded')
+      })
+      .catch((rejectedValueOrSerializedError) => {
+        history.push('/plan')
+        if (rejectedValueOrSerializedError === 'User plan lesson not found') {
+          console.log(`rejectedValueOrSerializedError`, rejectedValueOrSerializedError)
+          // navigate(`/plan`)
+        }
+      })
 
     // console.log('eventObj', JSON.parse(localStorage.getItem('access-token')))
   }
 
-  const { isMobile } = useMedia() // this is test  to push changes
+  const { isMobile } = useMedia()
 
   const addZero = (number) => (number < 10 ? `0${number}` : number)
 

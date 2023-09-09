@@ -34,7 +34,7 @@ export const getWeeklyClass = createAsyncThunk(
   async (data) => {
     const { dateFrom, dateTo, statusName } = data
     const response = await rest.get(
-      `https://single.uz/api/event/user?dateFrom=${dateFrom}&dateTo=${dateTo}&statusName=${statusName}`
+      `http://single.uz/api/event/user?dateFrom=${dateFrom}&dateTo=${dateTo}&statusName=${statusName}`
     )
     return response.data.data
   }

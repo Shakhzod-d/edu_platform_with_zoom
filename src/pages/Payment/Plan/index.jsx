@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Wrapper, Primary } from '@/UI'
 import { history } from 'src/libs/utils'
 import { Select, Form } from 'antd'
@@ -20,8 +20,6 @@ export default function Plan() {
 
     // lessonDurationWeek
     localStorage.setItem('lessonDurationWeekId', id)
-
-    console.log('id', id, 'level', level)
   }
 
   const selectPlan = (id, totalPrice) => {
@@ -36,8 +34,8 @@ export default function Plan() {
   }
 
   const onFinish = (values) => {
-    localStorage.setItem('paymentPrice', totalPrice)
-    // console.log('Received values of form: ', values)
+    localStorage.setItem('totalPrice', totalPrice)
+
     history.push('/payment')
   }
 

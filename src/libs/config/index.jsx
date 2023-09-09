@@ -2,7 +2,7 @@ const appStage = import.meta.env.VITE_APP_STAGE || 'prod'
 
 const stages = {
   dev: {
-    apiUrl: 'https://single.uz/api',
+    apiUrl: 'http://single.uz/api',
     cdnHost: 'https://single.uz/uploads',
   },
   prod: {

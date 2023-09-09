@@ -10,7 +10,7 @@ export default function Upcoming() {
   const { events } = useSelector((state) => state.event) // events = Upcoming
   const dispatch = useDispatch()
   const course = true
-  const lesson_today = false
+  const lesson_today = true
 
   // console.log(events)
 
@@ -26,7 +26,7 @@ export default function Upcoming() {
           {lesson_today ? (
             <>
               {events?.map((item, idx) => (
-                <LessonCard key={idx} />
+                <LessonCard item={item} key={idx} />
               ))}
             </>
           ) : (
@@ -34,9 +34,9 @@ export default function Upcoming() {
           )}
 
           <Divider>Upcoming events</Divider>
-          {[1, 2, 3, 4].map((id) => (
-            <LessonCard key={id} />
-          ))}
+          {/* {[1, 2, 3, 4].map((id) => (
+            <LessonCard item={[]} key={id} />
+          ))} */}
         </div>
       ) : (
         <ScheduleLesson text="You have no scheduled lessons. Select a teacher to get started." />

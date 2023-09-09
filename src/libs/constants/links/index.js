@@ -5,7 +5,7 @@ function getItem(key, label) {
   }
 }
 
-const userLinks = [getItem('Find a teacher', 'find-teacher'), getItem('Courses', 'courses')]
+const userLinks = [getItem('Find a teacher', 'student'), getItem('Courses', 'courses')]
 
 const studentLinks = [
   getItem('Dashboard', 'student/dashboard'),
